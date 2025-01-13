@@ -131,3 +131,31 @@ document.getElementById('historicoImages').addEventListener('click', (event) => 
         reprocesarImagen(imgElement.dataset.imageUrl);
     }
 });
+
+let isProcessing = false;
+
+function processImage() {
+    // Prevenir el scroll mientras procesamos la imagen
+    isProcessing = true;
+    document.body.style.overflow = 'hidden';  // Esto bloquea el scroll
+
+    // Aquí va tu código de procesamiento de imagen
+    setTimeout(() => {
+        // Simulación de procesamiento de imagen
+        console.log('Imagen procesada');
+        
+        // Después de procesar la imagen, puedes permitir el scroll nuevamente
+        isProcessing = false;
+        document.body.style.overflow = '';  // Esto habilita el scroll
+    }, 3000);  // Simulando que el procesamiento toma 3 segundos
+}
+
+// Evitar que el usuario haga scroll mientras se procesa la imagen
+window.addEventListener('wheel', (e) => {
+    if (isProcessing) {
+        e.preventDefault(); // Bloquea el desplazamiento
+    }
+});
+
+// Llama a esta función cuando proceses la imagen
+processImage();
