@@ -63,5 +63,12 @@ function processImage() {
     }, 3000);  // Simulando que el procesamiento toma 3 segundos
 }
 
+// Evitar que el usuario haga scroll mientras se procesa la imagen
+window.addEventListener('wheel', (e) => {
+    if (isProcessing) {
+        e.preventDefault(); // Bloquea el desplazamiento
+    }
+});
+
 // Llama a esta función cuando proceses la imagen
 processImage();
